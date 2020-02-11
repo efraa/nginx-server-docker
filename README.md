@@ -19,10 +19,10 @@ which docker-compose
 
 1. Copy your entire App to the ``` app/ ``` directory.
 
-    1.1 Make sure you have an ``` index.php ``` file in app/
-    1.2 Make sure you have an ``` composer.json ``` file in app/
+    1.1 Make sure you have an ``` index.php ``` file in app/ <br />
+    1.2 Make sure you have an ``` composer.json ``` file in app/ 
 
-2. Start the application:
+2. Start the application: <br />
     Note: root of main directory ``` ./ ``` not in ``` ./app/ ```
 
     ```sh
@@ -40,7 +40,7 @@ which docker-compose
         ```sh
         docker logs <CONTAINER_NAME>
         ```
-        2.1.1 Example: <MY_APP_SERVER> <MY_APP_MY_SQL_ADMIN>
+    2.1 Example: ``` <MY_APP_SERVER> <MY_APP_MY_SQL_ADMIN> ```
 
 
 3. Open your browser:
@@ -65,18 +65,18 @@ which docker-compose
     ```
 ___
 
-## Use Docker commands
+## Docker commands
 
 ### Installing package with composer
 
 ```sh
-docker run --rm -v $(pwd)/web/app:/app composer require symfony/yaml
+docker run --rm -v $(pwd)/app:/app composer require symfony/yaml
 ```
 
 ### Updating PHP dependencies with composer
 
 ```sh
-docker run --rm -v $(pwd)/web/app:/app composer update
+docker run --rm -v $(pwd)/app:/app composer update
 ```
 
 #### MySQL shell access
