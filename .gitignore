@@ -1,0 +1,6 @@
+/data
+# SSL Certs
+etc/ssl/
+app/**
+!app/index.php
+.env
