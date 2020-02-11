@@ -5,6 +5,6 @@
     "**/.editorconfig": true,
     "**/.gitignore": false,
     "**/package-lock.json": true,
-    "**/data": true,
+    "**/data/db": true,
   }
 }

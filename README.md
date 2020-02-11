@@ -79,44 +79,14 @@ docker run --rm -v $(pwd)/app:/app composer require symfony/yaml
 docker run --rm -v $(pwd)/app:/app composer update
 ```
 
-#### MySQL shell access
-
-```sh
-docker exec -it mysql bash
-```
-
-and
-
-```sh
-mysql -u "$MYSQL_ROOT_USER" -p "$MYSQL_ROOT_PASSWORD"
-```
-
-#### Creating a backup of all databases
-
-```sh
-mkdir -p data/dumps
-```
-
-```sh
-source .env && docker exec $(docker-compose ps -q mysqldb) mysqldump --all-databases -u"$MYSQL_ROOT_USER" -p"$MYSQL_ROOT_PASSWORD" > "data/dumps/db.sql"
-```
-
-#### Restoring a backup of all databases
-
-```sh
-source .env && docker exec -i $(docker-compose ps -q mysqldb) mysql -u"$MYSQL_ROOT_USER" -p"$MYSQL_ROOT_PASSWORD" < "data/dumps/db.sql"
-```
-
 #### Creating a backup of single database
 
-**`Notice:`** Replace "YOUR_DB_NAME" by your custom name.
-
 ```sh
-source .env && docker exec $(docker-compose ps -q mysqldb) mysqldump -u"$MYSQL_ROOT_USER" -p"$MYSQL_ROOT_PASSWORD" --databases YOUR_DB_NAME > "data/dumps/YOUR_DB_NAME_dump.sql"
+run/backup.sh
 ```
 
 #### Restoring a backup of single database
 
 ```sh
-source .env && docker exec -i $(docker-compose ps -q mysqldb) mysql -u"$MYSQL_ROOT_USER" -p"$MYSQL_ROOT_PASSWORD" < "data/dumps/YOUR_DB_NAME_dump.sql"
+run/restore.sh
 ```
