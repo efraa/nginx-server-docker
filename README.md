@@ -1,21 +1,64 @@
-# Nginx Server for PHP Apps with MySQL
+# Nginx Server for PHP Apps with MySQL 🚀
 
-Docker running Nginx, PHP, Composer, MySQL and PHPMyAdmin to manage your DB.
+Nginx server running with Docker for PHP applications. <br />
+**With:**
 
-___
+* Composer
+* MySQL
+* PHPMyAdmin
+* NGNX PROXY
 
-## Install prerequisites
+### Install 📌
+***
 
 * [Docker](https://docs.docker.com/engine/installation/)
 * [Docker Compose](https://docs.docker.com/compose/install/)
 
-Check if `docker-compose` is already installed by entering the following command : 
+### Getting Started 📌
+***
 
-```sh
-which docker-compose
+1. Clone
+2. Move to -> ``` cd ${APP_NAME} ```
+3. Copy ``` .example.env ``` to ``` .env ```
+
+**NOTICE:** Update the values ​​of the variables in ``` .env ```
+
+### Env vars 📌
+***
+
+* ``` APP_NAME ``` :: Name of your application. **NOTICE:** Please use uppercase and underscores.
+* ``` NGINX_HOST ``` :: Route where your application will live. _example_ :: ``` myapp.local ```
+* ``` DB_PASSWORD ``` :: Database pass.
+* ``` DB_USER ``` :: Database user.
+* ``` DB_NAME ``` :: The database name used by the application.
+* ``` DB_HOST ``` :: Name of the service where MySQL runs. _default_ :: ``` db ```
+* ``` PHP_VERSION ``` :: PHP version
+* ``` MYSQL_VERSION ``` :: MySQL version
+
+### Edit hosts file 📌
+
+You must add the route "${NGINX_HOST}" where your application lives to the hosts file located at: <br />
+
+``` C:\Windows\System32\drivers\etc\hosts ```
+
+**NOTICE:** Add your route and add another version with the prefix ``` db. ```
+
+**Warning:** Just edit the part of the ``` myapp.local || ${NGINX_HOST} ``` route
+
+_Examples_
+
+```sh 
+127.0.0.1 ${NGINX_HOST}
+127.0.0.1 db.${NGINX_HOST}
 ```
 
-## Run the application
+```sh 
+127.0.0.1 myapp.local
+127.0.0.1 db.myapp.local
+```
+
+### Run the application ⚙️
+***
 
 1. Copy your entire App to the ``` app/ ``` directory.
 
@@ -45,18 +88,8 @@ which docker-compose
 
 3. Open your browser:
 
-    This project use the following ports:
-
-    | Server     | Port |
-    |------------|------|
-    | MySQL      | 8989 |
-    | AdminDB    | 8040 |
-    | App        | 8000 |
-
-    ___
-
-    * [http://localhost:8000](http://localhost:8000/) Your App
-    * [http://localhost:8040](http://localhost:8040/) AdminDB
+    * [http://${NGINX_HOST}](http://${NGINX_HOST}) Your App
+    * [http://db.${NGINX_HOST}](http://db.${NGINX_HOST}) AdminDB:: Manage your database.
 
 4. Stop and clear services
 
@@ -65,19 +98,7 @@ which docker-compose
     ```
 ___
 
-## Docker commands
-
-### Installing package with composer
-
-```sh
-docker run --rm -v $(pwd)/app:/app composer require symfony/yaml
-```
-
-### Updating PHP dependencies with composer
-
-```sh
-docker run --rm -v $(pwd)/app:/app composer update
-```
+## Scripts
 
 #### Creating a backup of single database
 

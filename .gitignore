@@ -4,3 +4,4 @@ etc/ssl/
 app/**
 !app/index.php
 .env
+ssl
