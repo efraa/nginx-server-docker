@@ -9,6 +9,9 @@ services:
       - 80:80
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
+    depends_on:
+      - server
+      - db_admin
     networks:
       - app
 
@@ -51,6 +54,14 @@ services:
     command: install
     networks:
       - app
+
+  node:
+    image: node
+    user: node
+    working_dir: /home/node/app
+    volumes:
+      - ./app${APP_THEME_PATH}:/home/node/app
+    command: npm install && npm run watch
 
   db_admin:
     image: phpmyadmin/phpmyadmin
