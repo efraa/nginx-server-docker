@@ -59,9 +59,17 @@ services:
     image: node
     user: node
     working_dir: /home/node/app
+    container_name: ${APP_NAME}_NODE
     volumes:
       - ./app${APP_THEME_PATH}:/home/node/app
     command: npm install && npm run watch
+
+  aws:
+    build:
+      context: ./config/aws
+      dockerfile: Dockerfile
+    container_name: ${APP_NAME}_AWS
+    command: sh -c "npm start"
 
   db_admin:
     image: phpmyadmin/phpmyadmin
