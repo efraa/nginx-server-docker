@@ -55,21 +55,21 @@ services:
     networks:
       - app
 
-  node:
-    image: node
-    user: node
-    working_dir: /home/node/app
-    container_name: ${APP_NAME}_NODE
-    volumes:
-      - ./app${APP_THEME_PATH}:/home/node/app
-    command: npm install && npm run watch
+  # node:
+  #   image: node
+  #   user: node
+  #   working_dir: /var/www/html/public/${APP_THEME_PATH}
+  #   container_name: ${APP_NAME}_NODE
+  #   volumes:
+  #     - ./app${APP_THEME_PATH}:/var/www/html/public
+  #   command: npm install
+  #   networks:
+  #     - app
 
-  aws:
-    build:
-      context: ./config/aws
-      dockerfile: Dockerfile
-    container_name: ${APP_NAME}_AWS
-    command: sh -c "npm start"
+  # aws:
+  #   image: mikesir87/aws-cli
+  #   container_name: ${APP_NAME}_AWS
+  # # command: sh -c "npm start"
 
   db_admin:
     image: phpmyadmin/phpmyadmin
